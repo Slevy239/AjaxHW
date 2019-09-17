@@ -1,12 +1,13 @@
 $(document).ready(function () {
 
-    var buttons = ['phish', "coding"];
+    var buttons = [];
 
     function displayButtons() {
         $("#buttons-view").empty();
         for (var i = 0; i < buttons.length; i++) {
             var gifBtn = $("<button>");
             gifBtn.addClass("button");
+            gifBtn.addClass("btn btn-primary")
             gifBtn.attr("data-name", buttons[i]);
             gifBtn.text(buttons[i]);
             $("#buttons-view").append(gifBtn);
@@ -18,22 +19,27 @@ $(document).ready(function () {
             event.preventDefault();
             var button = $("#input").val();
             buttons.push(button);
-            displayButtons();
-            console.log(button)
+            if (button === "") {
+                noInput();
+            } else {
+                displayButtons();
+            }
         })
+    }
+
+    function noInput(){
+        alert("Enter Something!!!")
     }
 
 
     function displayGif() {
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + buttons + "&api_key=tfZU03Q2B2QpE3Wn8OdWajo0JImv7arL";
-        console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
         })
-            .done(function (response) {
+            .then(function (response) {
                 var results = response.data;
-
                 for (var i = 0; i < results.length; i++) {
                     var gifDiv = $("<div>");
                     gifDiv.addClass("gifDiv");
