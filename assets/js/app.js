@@ -16,9 +16,10 @@ $(document).ready(function () {
     function addNewBtn() {
         $("#add-gif").on("click", function (event) { //adds buttons to array
             event.preventDefault();
-            var button = $("#gif-input").val();
+            var button = $("#input").val();
             buttons.push(button);
             displayButtons();
+            console.log(button)
         })
     }
 
