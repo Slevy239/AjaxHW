@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var buttons = [];
+    var buttons = ['gif', 'computer'];
 
     function displayButtons() {
         $("#buttons-view").empty();
