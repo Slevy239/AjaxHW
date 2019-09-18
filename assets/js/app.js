@@ -8,7 +8,7 @@ $(document).ready(function () {
         for (var i = 0; i < buttons.length; i++) {
             var gifBtn = $("<button>"); //variable to created button tag
             gifBtn.addClass("button");//adds button class
-            gifBtn.addClass("btn btn-primary") //bootstrap attributes
+            gifBtn.addClass("btn-success") //bootstrap attributes
             gifBtn.attr("data-name", buttons[i]); //gives each button data-name of the button index
             gifBtn.text(buttons[i]); //adds the text from the array and updates the button's text on the DOM
             $("#buttons-view").append(gifBtn); //updates id=buttons-view with the buttons
@@ -37,7 +37,7 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        });
+        })
             .then(function (response) {
             var results = response.data;
             for (var i = 0; i < results.length; i++) {
