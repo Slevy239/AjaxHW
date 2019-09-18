@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GIF</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css"
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <div class="container jumbotron">
-        <h1>Gif Search</h1>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Gif Search</h1>
+        </div>
     </div>
 
-<div class="container">
-    <div class="row">
-    <div id="buttons-view" class="col-lg-12"></div>
-        <form id="gif-form">
-            <label for="gif-form">Add a Gif!</label> 
-            <input type="text" id="input">
-        <br>
-        <input id="add-gif" type="submit" value="Search a topic!" class="btn btn-primary">
-    </form>
 
-    <div class="container col-lg-12">
+    <div id="buttons-view" class="container">
+    </div>
+    <br>
+
+    <div class="container">
         <div class="row">
-    <div id="gifs"></div>
+            <div class="col-lg-12">
+                <form id="gif-form">
+                    <label for="gif-form">Add a Gif!</label>
+                    <input type="text" id="input">
+                    <input id="add-gif" type="submit" value="Search a topic!" class="btn btn-primary">
+                </form>
+            </div>
         </div>
-</div>
-    
+        <br>
+
+        <div class="container">
+            <div class="row">
+                    <div id="gifs"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <br>
+    </div>
+
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../AjaxHW/assets/js/app.js"></script>
+
 </html>
