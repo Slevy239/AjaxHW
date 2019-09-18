@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var buttons = ['gif', 'computer']; // buttons for gif searchs
+    var buttons = ['gif', 'computer', 'Eagles', 'Phillies', 'Flyers', 'Sixers', 'Embiid']; // buttons for gif searchs
     var gifNumber = 5; // results per search
 
     function displayButtons() {
@@ -33,6 +33,7 @@ $(document).ready(function () {
     };
 
     function displayGif() { // api query, with buttons array, limiting search results and API key
+        var buttons = $(this).attr("data-name")
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + buttons + "&limit=" + gifNumber + "&api_key=tfZU03Q2B2QpE3Wn8OdWajo0JImv7arL";
         $.ajax({
             url: queryURL,
@@ -41,7 +42,7 @@ $(document).ready(function () {
             .then(function (response) {
             var results = response.data;
             for (var i = 0; i < results.length; i++) {
-                var gifDiv = $("<div class='col-2'>"); //creates new div for each gif
+                var gifDiv = $("<div>"); //creates new div for each gif
                 gifDiv.addClass("gifDiv"); // gives each gif a class name
                 var gifRating = $("<p>").text("Rating: " + results[i].rating); //dynamically adds paragraph tag with the gif's rating
                 gifDiv.prepend(gifRating); // adds gif rating to the div
