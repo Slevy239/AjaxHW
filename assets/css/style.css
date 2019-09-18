@@ -1,7 +1,13 @@
 .jumbotron {
     text-align: center;
+    color: brown;
+    background-color: black;
 }
-label {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
-    font-size: 25px;
+body {
+    background-color: white
 }
+#search {
+    float: right;
+    position: sticky
+}
+
