@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var buttons = ['Eagles', 'Phillies', 'Flyers', 'Sixers', 'Embiid', 'Claude Giroux', 'Bryce Harper', 'Carson Wentz', 'Julius Erving', 'Boban Marjanovic']; // buttons for gif searchs
-    var gifNumber = 5; // results per search
+    var gifNumber = 10; // results per search
 
 
     function displayButtons() {
@@ -49,14 +49,12 @@ $(document).ready(function () {
                 var gif = $("<img>");
                 var animate = results[i].images.original.url;
                 var still = results[i].images.original_still.url;
-                console.log(still)
-
                 
                     gif.addClass("image")
+                    gif.attr("data-state", "still")
                     gif.attr("src", animate);
                     gif.attr("data-still", still)
                     gif.attr("data-animate", animate);
-                    gif.attr("data-state", "still")
                     gif.attr("class", "gif-image");
                     $("#gifs").append(gif);
 
@@ -66,7 +64,7 @@ $(document).ready(function () {
     };
 
     $(document).on("click", ".button", displayGif);
-    $("#gifs").on("click", function() {
+    $(".image").on("click", function() {
         var state = $(this).attr("data-state");
         if (state === "still") {
             $(this).attr("src", $(this).attr("data-animate"));
