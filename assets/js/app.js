@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var buttons = ['Eagles', 'Phillies', 'Flyers', 'Sixers', 'Embiid']; // buttons for gif searchs
+    var buttons = ['Eagles', 'Phillies', 'Flyers', 'Sixers', 'Embiid', 'Claude Giroux', 'Bryce Harper', 'Carson Wentz', 'Julius Erving', 'Boban Marjanovic']; // buttons for gif searchs
     var gifNumber = 5; // results per search
 
 
@@ -9,7 +9,7 @@ $(document).ready(function () {
         for (var i = 0; i < buttons.length; i++) {
             var gifBtn = $("<button>"); //variable to created button tag
             gifBtn.addClass("button");//adds button class
-            gifBtn.addClass("btn-success") //bootstrap attributes
+            gifBtn.addClass("btn-warning") //bootstrap attributes
             gifBtn.attr("data-name", buttons[i]); //gives each button data-name of the button index
             gifBtn.text(buttons[i]); //adds the text from the array and updates the button's text on the DOM
             $("#buttons-view").append(gifBtn); //updates id=buttons-view with the buttons
@@ -19,7 +19,6 @@ $(document).ready(function () {
     function addNewBtn() {
         $("#add-gif").on("click", function (event) { //click event for the "search a topic" button
             event.preventDefault()
-
             var button = $("#input").val(); //grabs value from the input
             buttons.push(button); //pushs the input into the array, creating a new button
             if (button === "") { //if input is blank, run noInput function
@@ -37,20 +36,27 @@ $(document).ready(function () {
 
     function displayGif() { // api query, with buttons array, limiting search results and API key
         var buttons = $(this).attr("data-name");
+        $("#gifs").empty()
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + buttons + "&limit=" + gifNumber + "&api_key=tfZU03Q2B2QpE3Wn8OdWajo0JImv7arL";
         $.ajax({
             url: queryURL,
             method: "GET"
         })
-            .then(function (response) {
-                var results = response.data;
-                for (var i = 0; i < results.length; i++) {
+        .then(function (response) {
+            var results = response.data;
+            for (var i = 0; i < results.length; i++) {
+                
+                var gif = $("<img>");
+                var animate = results[i].images.original.url;
+                var still = results[i].images.original_still.url;
+                console.log(still)
 
-                    var gif = $("<img>");
-                    var moving = results[i].images.original.url;
-
-                    gif.attr("src", moving);
-                    gif.attr("data-loop", moving);
+                
+                    gif.addClass("image")
+                    gif.attr("src", animate);
+                    gif.attr("data-still", still)
+                    gif.attr("data-animate", animate);
+                    gif.attr("data-state", "still")
                     gif.attr("class", "gif-image");
                     $("#gifs").append(gif);
 
@@ -60,6 +66,17 @@ $(document).ready(function () {
     };
 
     $(document).on("click", ".button", displayGif);
+    $("#gifs").on("click", function() {
+        var state = $(this).attr("data-state");
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate")
+        }
+        else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still")
+        }
+    });     
 
     displayButtons();
     displayGif();
