@@ -3,11 +3,11 @@
     color: brown;
     background-color: black;
 }
+
+.image {
+    height: 200px;
+    width: 200px;
+}
 body {
     background-color: white
 }
-#search {
-    float: right;
-    position: sticky
-}
-
