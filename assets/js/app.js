@@ -36,6 +36,7 @@ $(document).ready(function () {
     
 
     function displayGif() { // api query, with buttons array, limiting search results and API key
+        event.preventDefault()
         var buttons = $(this).attr("data-name")
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + buttons + "&limit=" + gifNumber + "&api_key=tfZU03Q2B2QpE3Wn8OdWajo0JImv7arL";
         $.ajax({
@@ -45,6 +46,7 @@ $(document).ready(function () {
         .then(function (response) {
             console.log(response)
             var results = response.data;
+            $("#gifs").empty()
             for (var i = 0; i < results.length; i++) {
                 var gifDiv = $("<div>"); //creates new div for each gif
                 gifDiv.addClass("gifDiv"); // gives each gif a class name
