@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     function addNewBtn() {
         $("#add-gif").on("click", function (event) { //click event for the "search a topic" button
-            event.preventDefault()
+        event.preventDefault()
             var button = $("#input").val(); //grabs value from the input
             buttons.push(button); //pushs the input into the array, creating a new button
             if (button === "") { //if input is blank, run noInput function
@@ -35,7 +35,8 @@ $(document).ready(function () {
 
 
     function displayGif() { // api query, with buttons array, limiting search results and API key
-        var buttons = $(this).attr("data-name");
+        var buttons = $(this).attr("data-name");    
+
         $("#gifs").empty()
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + buttons + "&limit=" + gifNumber + "&api_key=tfZU03Q2B2QpE3Wn8OdWajo0JImv7arL";
         $.ajax({
@@ -52,31 +53,30 @@ $(document).ready(function () {
                 
                     gif.addClass("image")
                     gif.attr("data-state", "still")
-                    gif.attr("src", animate);
-                    gif.attr("data-still", still)
+                    gif.attr("src", still);
                     gif.attr("data-animate", animate);
+                    gif.attr("data-still", still)
                     gif.attr("class", "gif-image");
                     $("#gifs").append(gif);
-
-
                 };
             });
     };
 
-    $(document).on("click", ".button", displayGif);
-    $(".image").on("click", function() {
+    
+    $(document).on("click", '.gif-image', function() {
         var state = $(this).attr("data-state");
         if (state === "still") {
             $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate")
+            $(this).attr("data-state", "animate");
         }
         else {
             $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still")
+            $(this).attr("data-state", "still");
+
         }
     });     
+    $(document).on("click", ".button", displayGif);
 
     displayButtons();
-    displayGif();
     addNewBtn();
 })
