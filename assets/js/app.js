@@ -52,7 +52,7 @@ $(document).ready(function () {
                 var still = results[i].images.original_still.url;
                 
                     gif.addClass("image")
-                    gif.attr("data-state", "still")
+                    gif.attr("data-state", "still");
                     gif.attr("src", still);
                     gif.attr("data-animate", animate);
                     gif.attr("data-still", still)
